@@ -5,6 +5,7 @@ public class DebateTopicVO {
 	private String objectId;
 	private String userObjectId;
 	private String topicDesc;
+	private String abc;
 
 	public String getObjectId() {
 		return objectId;
