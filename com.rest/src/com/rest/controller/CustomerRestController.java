@@ -62,12 +62,12 @@ public class CustomerRestController {
 		CustomerDAO userCred=new CustomerDAO();
 		// TODO: Encrypt Password
 		CustomerVO validCust=userCred.checkCustomer(user);
-		ResponseVO responseVO=null;
+		ResponseVO responseVO=new ResponseVO();;
 		if(validCust.getObjectId()!=null) {
 			SessionManagement sessionManagement=new SessionManagement();
 			sessionManagement.putToSessionMap(httpRequest.getSession().getId(), validCust);
+			responseVO.setMessage("You have Logged in successfully");
 		}else {
-			responseVO=new ResponseVO();
 			responseVO.setMessage("The credentials you have entered is incorrect");
 		}
 		
