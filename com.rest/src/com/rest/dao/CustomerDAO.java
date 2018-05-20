@@ -2,6 +2,8 @@ package com.rest.dao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.util.Date;
 
 import com.rest.daoHelper.CustomerDAOHelper;
 import com.rest.model.CustomerVO;
@@ -28,7 +30,6 @@ public class CustomerDAO extends BaseConnectionDAO {
 		return userObj;
 	}
 
-	
 	// used for user userId Validation during signup
 	public CustomerVO userIdCheck(CustomerVO user) {
 		CustomerVO userObj = null;
@@ -48,14 +49,13 @@ public class CustomerDAO extends BaseConnectionDAO {
 		return userObj;
 	}
 
-	
 	// used to create new user
 	public void createNewUser(CustomerVO user) {
 		try {
-			//String sql = "insert into user_details (objectId,first_name,middle_name,last_name,email,userId,password) values (?, ?, ?, ?,?,?,?)";
-			String sql=CustomerSQL.signUpSQL;
+			String sql = CustomerSQL.signUpSQL;
 			PreparedStatement statement = getFinalConnection().prepareStatement(sql);
 			CustomerDAOHelper custDaoHelper = new CustomerDAOHelper();
+			
 			// generate next Customer ObjectId
 			statement.setString(1, custDaoHelper.getNextUserId());
 			statement.setString(2, user.getNameFirst());
@@ -64,14 +64,13 @@ public class CustomerDAO extends BaseConnectionDAO {
 			statement.setString(5, user.getEmail());
 			statement.setString(6, user.getUserId());
 			statement.setString(7, user.getPassword());
-			
+			statement.setTimestamp(8, new Timestamp(new Date().getTime()));
 			statement.executeUpdate();
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 	}
 
-	
 	// used for User Authentication during Login
 	public CustomerVO checkCustomer(CustomerVO user) {
 		CustomerVO userObj = null;
@@ -86,11 +85,25 @@ public class CustomerDAO extends BaseConnectionDAO {
 			userObj = new CustomerVO();
 			if (rs.next()) {
 				userObj.setObjectId(rs.getString(1));
+				updateLastLogin(userObj);
 			}
 		} catch (Exception e) {
 			System.out.println(e);
 		}
 		return userObj;
 	}
+	
+	//used to update LastLogin
+	private void updateLastLogin(CustomerVO userObj) {
+		try {
+			String sql = CustomerSQL.updateLastLogin;
+			PreparedStatement statement = getFinalConnection().prepareStatement(sql);
+			statement.setTimestamp(1, new Timestamp(new Date().getTime()));
+			statement.setString(2, userObj.getObjectId());
 
+			statement.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
 }
