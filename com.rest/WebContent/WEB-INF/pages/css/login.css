@@ -1,0 +1,143 @@
+/* Below line is used for online Google font */
+
+@import url(http://fonts.googleapis.com/css?family=Droid+Serif);
+
+ 
+
+body{
+
+margin: auto;
+
+height: 100%;
+
+background : linear-gradient(to left, #22abe9,#FFFFFF );
+
+border: 1px solid black;
+
+}
+
+h2{
+
+margin-bottom: 30px;
+
+text-decoration: underline;        
+
+}
+
+div.container{
+
+font-family: 'Droid Serif', serif;
+
+}
+
+div.main{
+
+width: 30%;
+
+margin-top: 10%;
+
+margin-right: 5%;
+
+float:right;
+
+background : linear-gradient(to left, #FFFFFF 0.5%, rgba(187, 255, 184, 0.65) 100%);
+
+border: 3px solid white;
+
+box-shadow: 0 0 10px;
+
+border-radius: 2px;
+
+font-size: 13px;
+
+}
+
+form{
+
+                margin:10px;
+
+}
+
+input[type=text],[type=password] {
+
+width: 98%;
+
+height: 25px;
+
+padding-left: 5px;
+
+margin-bottom: 5px;
+
+margin-top: 5px;
+
+box-shadow: 0 0 5px #00F5FF;
+
+border: 2px solid #00F5FF;
+
+border-radius: 20px;
+
+color: #4f4f4f;
+
+font-size: 16px;
+
+}
+
+label{
+
+color: #464646;
+
+font-size: 14px;
+
+font-weight: bold;
+
+}
+
+#login {
+
+width: 40%;
+
+background: linear-gradient(#22abe9 5%, #36caf0 100%);
+
+float:right;
+
+border: 1px solid #0F799E;
+
+border-radius: 20px;
+
+font-size: 14px;
+
+padding: 8px;
+
+font-weight: bold;
+
+cursor: pointer;
+
+color: white;
+
+text-shadow: 0px 1px 0px #13506D;
+
+margin-bottom:10px;
+
+}
+
+#login:hover{
+
+background: linear-gradient(#36caf0 5%, #22abe9 100%);
+
+}
+
+ 
+
+#signUp{
+
+color: blue;
+
+}
+
+ 
+
+#forgotPassword{
+
+color: red;
+
+}
